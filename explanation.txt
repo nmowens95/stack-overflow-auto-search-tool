@@ -1,11 +1,21 @@
 error_checkor:
+
 Explanation:
     The execute_python_code function takes the user's Python code as input and executes it using the subprocess module.
     The code is executed using the python -c command, and both standard output (stdout) and standard error (stderr) streams are captured.
     If the return code of the process is non-zero, it indicates an error occurred during execution.
     If an error is detected, the function returns a dictionary with success, error_type, and error_message keys to indicate the error type and message. 
     If no errors are found, it returns a dictionary with success and output keys.
-
 Usage:
     When you run the python_error_checker.py script, it will prompt you to enter Python code. It will then execute the code and display any errors or the output if no errors are found.
 
+stack_overflow_api:
+
+Explanation:
+    The search_stack_overflow function takes the error type and error message as input and constructs a URL to make an API request to Stack Overflow's search endpoint.
+    It uses the requests library to perform the HTTP GET request and handle potential exceptions.
+    The title parameter is used to search for the error type in thread titles, while the q parameter searches for the error message.
+    The script prints the titles and links of relevant threads found in the search results.
+Usage:
+    When you run the stack_overflow_search.py script, it will prompt you to enter the error type and error message obtained from Step 2. It will then make an 
+    API request to search for relevant Stack Overflow threads based on these inputs.
