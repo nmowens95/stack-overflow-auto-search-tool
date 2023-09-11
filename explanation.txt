@@ -1,0 +1,11 @@
+error_checkor:
+Explanation:
+    The execute_python_code function takes the user's Python code as input and executes it using the subprocess module.
+    The code is executed using the python -c command, and both standard output (stdout) and standard error (stderr) streams are captured.
+    If the return code of the process is non-zero, it indicates an error occurred during execution.
+    If an error is detected, the function returns a dictionary with success, error_type, and error_message keys to indicate the error type and message. 
+    If no errors are found, it returns a dictionary with success and output keys.
+
+Usage:
+    When you run the python_error_checker.py script, it will prompt you to enter Python code. It will then execute the code and display any errors or the output if no errors are found.
+
