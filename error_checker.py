@@ -1,4 +1,5 @@
 import subprocess
+import stack_overflow_api
 
 # Create a wrapper script
 def execute_python_code(user_code):
@@ -20,7 +21,7 @@ def execute_python_code(user_code):
         else:
             return {
                 "success": True,
-                "error_message": stderr.strip()
+                "error_message": stdout.strip()
             }
     except Exception as err:
         return {
@@ -30,16 +31,23 @@ def execute_python_code(user_code):
         }
     
 if __name__ == "__main__":
-    user_code = input(f"Enter your Python code: \n")
-    result = execute_python_code(user_code)
+    file_name = input(f"Enter the file name containing your Python code: \n")
+    try:
+        with open(file_name, "r") as code_file:
+            user_code = code_file.read()
+    
+        result = execute_python_code(file_name)
 
-    if result["success"]:
-        print("No errors")
-        print(f"Output: {user_code}")
-    else:
-        print("Error Type", result["error_type"])
-        print("Error Message", result["error_message"])
+        if result["success"]:
+            print("No errors")
+            print(f"Output: {user_code}")
+        else:
+            print("Error Type", result["error_type"])
+            print("Error Message", result["error_message"])
+            stack_overflow_api.search_stackoverflow(result["error_type"], result["error_message"])
 
-    if not result["success"]:
-        import stack_overflow_api
-        stack_overflow_api.search_stackoverflow(result["error_message"], result["error_type"])
+    except FileNotFoundError:
+        print(f"File {file_name} was not found")
+    except Exception as err:
+        print("Error", err)
+
