@@ -2,7 +2,7 @@ import requests
 import time
 import webbrowser
 
-def search_stackoverflow(error_message, error_type, max_tabs=3):
+def search_stackoverflow(error_type, error_message, max_tabs=1):
     # Stack exchange API base url
     api_url = "https://api.stackexchange.com/"
 
@@ -28,10 +28,15 @@ def search_stackoverflow(error_message, error_type, max_tabs=3):
 
         # Open the thread in a we browser tab
         webbrowser.open_new_tab(thread_link)
+        print("Opened:", thread_link)
 
         # Used for a delay to stay within rate
-        time.sleep(1)  
+        time.sleep(2)  
 
     # General exception handling         
     except requests.exceptions.RequestException as err: 
         print("Error:", err)
+
+
+if __name__ == "__main__":
+    pass
