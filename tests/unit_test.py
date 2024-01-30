@@ -1,5 +1,5 @@
 import unittest
-from error_checker import execute_python_code
+from search_tool.error_checker import execute_python_code
 
 class TestPythonErrorChecker(unittest.TestCase):
     def test_no_errors(self):
